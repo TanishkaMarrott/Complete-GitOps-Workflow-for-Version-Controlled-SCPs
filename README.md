@@ -1,7 +1,7 @@
 
 # **Version-Controlled SCP Workflow** 
 
-This workflow explains how to implement **version-controlled SCPs** in a large-scale AWS environment. It’s all about **centralized governance**, ensuring policies can be updated or rolled back without disruption. Let's dive in!
+I'd be explaining how to implement the concept of **version-controlled SCPs** in a large-scale AWS environment. It’s all about **centralized governance**, ensuring policies can be updated or rolled back without disruption. Let's dive in!
 
 ---
 
