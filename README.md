@@ -1,5 +1,5 @@
 
-# **Version-Controlled SCP Workflow** 
+# Complete GitOps Workflow for Version-Controlled SCPs
 
 I'd be explaining how to implement the concept of **version-controlled SCPs** in a large-scale AWS environment. It’s all about **centralized governance**, ensuring policies can be updated or rolled back without disruption. Let's dive in!
 
