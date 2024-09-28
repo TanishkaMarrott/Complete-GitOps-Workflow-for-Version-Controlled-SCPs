@@ -1,0 +1,9 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Ignore local Terraform variable files
+*.tfvars
+
+# Ignore provider-specific configuration
+.terraform/
