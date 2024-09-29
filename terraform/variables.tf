@@ -6,4 +6,5 @@ variable "region" {
 variable "ou_id" {
   description = "The Organizational Unit (OU) or account ID where SCP is attached"
   type        = string
+  default     = "351147585035"
 }
