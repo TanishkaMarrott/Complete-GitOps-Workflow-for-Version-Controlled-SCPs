@@ -1,0 +1,44 @@
+name: Terraform GitOps Workflow
+
+on:
+  push:
+    branches:
+      - main     # Triggers the workflow only on the main branch
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    name: Terraform GitOps Automation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.9.6 # Replace with your Terraform version
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply (Manual Approval Required)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'ap-northeast-1'
+
