@@ -11,5 +11,5 @@ resource "aws_organizations_policy" "scp_example" {
 
 resource "aws_organizations_policy_attachment" "attach_scp_to_sandbox" {
   policy_id = aws_organizations_policy.scp_example.id
-  target_id = "351147585035" # Sandbox account ID
+  target_id = "587495905586" # Sandbox account ID
 }
