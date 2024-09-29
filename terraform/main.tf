@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_organizations_policy" "scp_example" {
   name        = "DenyHighCostEC2Instances"
   description = "This SCP denies launching of high-cost EC2 instances in specific environments."
-  content = file("../scp-policies/version_1.json")
+  content     = file("../scp-policies/version_1.json")
   type        = "SERVICE_CONTROL_POLICY"
 }
 
