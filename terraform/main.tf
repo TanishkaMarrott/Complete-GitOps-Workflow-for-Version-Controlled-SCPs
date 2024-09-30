@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "ap-northeast-1"
-  profile = "Tanishka-IAM"
+  profile = "default"
 }
 
 resource "aws_organizations_policy" "scp_example" {
