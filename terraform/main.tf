@@ -1,6 +1,5 @@
 provider "aws" {
-  region  = "ap-northeast-1"
-  profile = "default"
+  region = "ap-northeast-1"
 }
 
 resource "aws_organizations_policy" "scp_example" {
