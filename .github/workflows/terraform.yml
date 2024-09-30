@@ -13,9 +13,19 @@ jobs:
     name: Terraform GitOps Automation
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write   # Allows GitHub to use OIDC tokens
+      contents: read
+
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}   # Use the AWS role you created
+          aws-region: ${{ secrets.AWS_REGION }}         # Use your AWS region
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -37,16 +47,8 @@ jobs:
       - name: Terraform Plan
         working-directory: ./terraform  # Specify the path to your Terraform directory
         run: terraform plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'ap-northeast-1'
 
       - name: Terraform Apply (Manual Approval Required)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         working-directory: ./terraform  # Specify the path to your Terraform directory
         run: terraform apply -auto-approve
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'ap-northeast-1'
